@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block containerBody %}
+  <form class="form-horizontal">
+
+    <div class="control-group">
+      <label class="control-label" for="inputUsername">Username</label>
+      <div class="controls">
+        <input id="inputUsername" class="input-large" type="text" placeholder="Username">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">Password</label>
+      <div class="controls">
+        <input id="inputPassword" class="input-large" type="password" placeholder="Password">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="inputPasswordConfirmation">Password Confirmation</label>
+      <div class="controls">
+        <input id="inputPasswordConfirmation" class="input-large" type="password" placeholder="Password Confirmation">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <button id="submitBtn" class="btn btn-primary" type="submit">Create</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}
