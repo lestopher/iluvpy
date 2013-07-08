@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -75,3 +75,8 @@ def auth(request):
         context = RequestContext(request, {})
         return render(request, 'accounts/login', context)
 
+
+def user_logout(request):
+    logout(request)
+    context = RequestContext(request, {})
+    return redirect('/tracker', context)
