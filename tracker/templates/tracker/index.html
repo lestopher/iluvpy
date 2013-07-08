@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block containerBody %}
-  {% if success %}
-    <div class="alert">
+  {% if messages.SUCCESS %}
+    <div class="alert alert-success">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>{{ success }}</strong>
+      <strong>{{ messages.SUCCESS }}</strong>
     </div>
   {% endif %}
   <div class="hero-unit">
     <h1>Hey you, yeah you</h1>
     <p>Here's a dead simple weight tracker for you. Sign up today.</p>
-    <a class="btn btn-primary" href="/accounts/register">Register</a>
+    <a class="btn btn-large btn-primary" href="/accounts/register">Register</a>
   </div>
 {% endblock %}

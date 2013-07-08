@@ -7,6 +7,14 @@
           <li class="active">
             <a href="/tracker">Home</a>
           </li>
+          {% if user %}
+            <li>
+              <a href="/tracker/dashboard">Dashboard</a>
+            </li>
+            <li>
+              <a href="/accounts/logout/">Logout</a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </div>
