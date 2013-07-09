@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson
+from django.utils.timezone import utc
 from datetime import datetime
 from django.http import HttpResponse
 
@@ -48,7 +49,7 @@ def createUser(request):
 def dashboard(request):
     name = request.user.get_full_name()
     try:
-        goal = Goal.objects.get(user_id=request.user.id)
+        goal = Goal.objects.filter(user_id=request.user).latest('date_entered')
     except:
         goal = None
 
@@ -91,7 +92,11 @@ def setGoalWeight(request):
     if request.user.is_authenticated:
         result = []
         try:
-            goal = Goal(user_id=request.user, goal_weight=request.POST["goalWeight"], date_entered=datetime.now())
+            goal = Goal(
+                user_id=request.user,
+                goal_weight=request.POST["goalWeight"],
+                date_entered=datetime.utcnow().replace(tzinfo=utc)
+            )
             goal.save()
         except Exception as e:
             result.append({"valid": False, "message": e.message, "type": type(e).__name__})
