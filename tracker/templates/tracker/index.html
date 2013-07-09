@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% block containerBody %}
-  {% if messages.SUCCESS %}
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>{{ messages.SUCCESS }}</strong>
-    </div>
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags %}
+        <div class="alert alert-{{ message.tags }}">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>{{ message }}</strong>
+        </div>
+      {% endif %}
+    {% endfor %}
   {% endif %}
-  <div class="hero-unit">
-    <h1>Hey you, yeah you</h1>
-    <p>Here's a dead simple weight tracker for you. Sign up today.</p>
-    <a class="btn btn-large btn-primary" href="/accounts/register">Register</a>
+  <div id="home">
+    <div class="hero-unit">
+      <h1>Hey you, yeah you</h1>
+      <p>Here's a dead simple weight tracker for you. Sign up today.</p>
+      <a class="btn btn-large btn-primary" href="/accounts/register">Register</a>
+    </div>
   </div>
 {% endblock %}
