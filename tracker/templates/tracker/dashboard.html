@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block containerBody %}
+  <div id="dashboard">
+    <h1>
+      Welcome back {{ name }}!
+    </h1>
+    <hr />
+    {% if goal %}
+      <p>
+        Your current goal weight is: {{ goal.get_goal_weight }}
+      </p>
+    {% else %}
+      <h3>
+        Looks like you haven't set a goal yet. Would you like to do so?
+        <a id="setGoalWeightBtn" class="btn btn-small btn-primary">Set Goal</a>
+      </h3>
+      <div id="setGoalWeight" class="hide">
+        My target weight is:   
+        <div class="input-append">
+          <input id="goalWeightInput" class="span2" type="number">
+          <button id="submitGoalWeight" class="btn" type="button">Set</button>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
