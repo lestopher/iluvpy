@@ -6,6 +6,9 @@ from django.template import RequestContext
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.utils import simplejson
+from datetime import datetime
+from django.http import HttpResponse
 
 from tracker.models import Weight, Goal
 
@@ -76,7 +79,26 @@ def auth(request):
         return render(request, 'accounts/login', context)
 
 
-def user_logout(request):
+def userLogout(request):
     logout(request)
     context = RequestContext(request, {})
+    messages.success(request, "Successfully logged out.")
     return redirect('/tracker', context)
+
+
+# AJAX methods
+def setGoalWeight(request):
+    if request.user.is_authenticated:
+        result = []
+        try:
+            goal = Goal(user_id=request.user, goal_weight=request.POST["goalWeight"], date_entered=datetime.now())
+            goal.save()
+        except Exception as e:
+            result.append({"valid": False, "message": e.message, "type": type(e).__name__})
+        else:
+            result.append({"valid": True, "data": {}})
+    else:
+        result = []
+        result.appened({"valid": False, "message": "You must be logged in."})
+
+    return HttpResponse(simplejson.dumps(result), content_type="application/json")

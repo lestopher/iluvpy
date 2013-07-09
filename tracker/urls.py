@@ -8,5 +8,6 @@ urlpatterns = patterns(
     url(r'^/createUser/$', views.createUser, name='createUser'),
     url(r'^/dashboard/$', views.dashboard, name='dashboard'),
     url(r'^/auth/$', views.auth, name='auth'),
-    url(r'^/logout/$', views.user_logout, name='user_logout'),
+    url(r'^/logout/$', views.userLogout, name='userLogout'),
+    url(r'^/setGoalWeight/$', views.setGoalWeight, name='setGoalWeight'),
 )
