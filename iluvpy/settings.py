@@ -1,4 +1,6 @@
 # Django settings for iluvpy project.
+import os
+PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,8 +14,8 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        # 'NAME': 'C:/Users/christopher.nguyen/Documents/GitHub/iluvpy/iluvpy.db',                              # Or path to database file if using sqlite3.
-        'NAME': '/Users/christophernguyen/Sites/iluvpy/iluvpy.db',                              # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_DIR, 'iluvpy.db'),
+        # 'NAME': '/Users/christophernguyen/Sites/iluvpy/iluvpy.db',                              # Or path to database file if using sqlite3.
                                                  # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -73,8 +75,8 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    # "C:/Users/christopher.nguyen/Documents/GitHub/iluvpy/tracker/static",
-    "/Users/christophernguyen/Sites/iluvpy/tracker/static",
+    os.path.join(PROJECT_DIR, 'tracker/static'),
+    # "/Users/christophernguyen/Sites/iluvpy/tracker/static",
 )
 
 # List of finder classes that know how to find static files in
@@ -114,10 +116,10 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    # "C:/users/christopher.nguyen/Documents/GitHub/iluvpy/templates",
-    # "C:/users/christopher.nguyen/Documents/GitHub/iluvpy/tracker/templates",
-    "/Users/christophernguyen/Sites/iluvpy/templates",
-    "/Users/christophernguyen/Sites/iluvpy/tracker/templates",
+    os.path.join(PROJECT_DIR, 'templates'),
+    os.path.join(PROJECT_DIR, 'tracker/templates')
+    # "/Users/christophernguyen/Sites/iluvpy/templates",
+    # "/Users/christophernguyen/Sites/iluvpy/tracker/templates",
 )
 
 INSTALLED_APPS = (
