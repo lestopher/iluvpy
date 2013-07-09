@@ -19,6 +19,11 @@ $(document).ready(function() {
     $('#setGoalWeight').removeClass('hide');
   });
 
+  $('#hideGoalMessageBtn').on('click', function(ev) {
+    $(this).parent().removeClass('alert-success alert-error').addClass('hide')
+      .find('#msg').text('');
+  });
+
   $('#submitGoalWeight').on('click', function(ev) {
     var goalWeight = $('#goalWeightInput').val(),
         csrf       = $.cookie('csrftoken');
@@ -32,10 +37,20 @@ $(document).ready(function() {
       data: {
         goalWeight: goalWeight
       }
-    }).done(function(results) {
-      // if (results.valid) {
-      // }
-      console.log(results)
+    }).done(function(response) {
+      var $submitGoalMessage = $('#submitGoalMessage'),
+          results            = response[0];
+
+      if (results.valid) {
+        $submitGoalMessage.addClass('alert-success').find('#msg')
+          .text('Successfully updated goal weight.');
+
+      } else {
+        $submitGoalMessage.addClass('alert-error').find('#msg')
+          .text('An error occured when updating your goal weight. Please try again.\n' + results.message);
+      }
+
+      $submitGoalMessage.removeClass('hide');
     });
   });
 
