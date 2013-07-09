@@ -3,13 +3,17 @@
   <head>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     {% load staticfiles %}
-    <link href="{% static 'tracker/assets/app.css' %}" rel="stylesheet">
+    <link href="{% static 'tracker/assets/css/app.css' %}" rel="stylesheet">
+    <link href="{% static 'tracker/assets/css/justified-nav.css' %}" rel="stylesheet">
   </head>
   <body>
     <div class="container">
       {% include '_header.html' %}
       {% block containerBody %}{% endblock %}
     </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'tracker/assets/js/jquery.cookie.js' %}"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'tracker/assets/js/app.js' %}"></script>
   </body>
 </html>

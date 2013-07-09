@@ -4,15 +4,19 @@
     <div class="navbar-inner">
       <div class="container">
         <ul class="nav">
-          <li class="active">
+          <li id="homeTab" class="active">
             <a href="/tracker">Home</a>
           </li>
-          {% if user %}
-            <li>
+          {% if user.is_authenticated %}
+            <li id="dashboardTab">
               <a href="/tracker/dashboard">Dashboard</a>
             </li>
-            <li>
+            <li id="logoutTab">
               <a href="/tracker/logout/">Logout</a>
+            </li>
+          {% else %}
+            <li id="loginTab">
+              <a href="/accounts/login/">Login</a>
             </li>
           {% endif %}
         </ul>
