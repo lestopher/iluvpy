@@ -1,5 +1,8 @@
 # Django settings for iluvpy project.
 
+import os
+PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -11,11 +14,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PROJECT_DIR, 'iluvpy.db'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'iluvpy_dev',
         # 'NAME': '/Users/christophernguyen/Sites/iluvpy/iluvpy.db',                              # Or path to database file if using sqlite3.
                                                  # The following settings are not used with sqlite3:
-        'USER': '',
+        'USER': 'iluvpy_admin',
         'PASSWORD': '',
         'HOST': '',                              # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                              # Set to empty string for default.
@@ -73,7 +76,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_DIR, 'tracker/static'),
+    # os.path.join(PROJECT_DIR, 'tracker/static'),
     # "/Users/christophernguyen/Sites/iluvpy/tracker/static",
 )
 
@@ -169,7 +172,7 @@ For heroku usage
 """
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(default='postgres://iluvpy_admin:@localhost/iluvpy_dev')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -177,7 +180,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-import os
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
